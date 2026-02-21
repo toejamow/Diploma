@@ -19,7 +19,7 @@ const sortBy = ref('created_at')
 const sortOrder = ref('asc')
 const searchQuery = ref('')
 
-// --- Добавлено: Категории ---
+// Категории
 const categories = ref([
   { label: 'Все заметки', value: '' },
   { label: 'Дом', value: '1' },
@@ -115,7 +115,6 @@ const getStatusColor = (status: string) => {
   return colors[status as keyof typeof colors] || colors[0]
 }
 
-// Обновлённый watch с selectedCategory
 watch([selectedStatus, sortBy, sortOrder, searchQuery, selectedCategory], async () => {
   await notesStore.fetchNotes({
     category: selectedCategory.value?.value || '',
@@ -136,7 +135,7 @@ const toggleSortOrder = () => {
   <div class="min-h-screen bg-neutral-50">
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div class="flex justify-between items-center mb-6">
-        <!-- Заголовок с выпадающим списком категорий -->
+        <!-- заголовок с выпадающим списком категорий -->
         <div class="relative">
           <button @click="toggleCategoryDropdown"
             class="text-lg font-semibold text-neutral-800 flex items-center gap-1 hover:underline cursor-pointer">
@@ -168,7 +167,7 @@ const toggleSortOrder = () => {
       </div>
 
 
-      <!-- Filters and Search -->
+      <!-- Filters Search -->
       <div class="bg-white p-4 rounded-lg shadow-sm mb-6">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
           <!-- Search -->
@@ -246,7 +245,6 @@ const toggleSortOrder = () => {
             </div>
 
             <div v-if="note.goals?.length > 0" class="mb-2">
-
               <div class="flex justify-between text-sm text-neutral-500 mb-1">
                 <span>Прогресс выполнения</span>
                 <span>{{note.goals.filter(t => t.is_completed).length}}/{{ note.goals.length }}</span>
@@ -274,21 +272,26 @@ const toggleSortOrder = () => {
         </div>
 
         <div v-if="notesStore.tasks.length === 0" class="col-span-full bg-white rounded-lg shadow-sm p-8 text-center">
-          <p class="text-neutral-600 mb-4">
-            <template v-if="searchQuery || selectedStatus">
-              По заданным параметрам заметок не найдено.
-            </template>
-            <!-- <template v-else-if="selectedCategory && selectedCategory.value !== ''">
+          <template v-if="selectedCategory.value != ''">
+            <p class="text-neutral-600 mb-4">
               В этой категории пока нет заметок.
-            </template> -->
-            <template v-else>
-              Вы еще не создавали заметок...
+            </p>
+          </template>
+          <template v-else-if="searchQuery || selectedStatus">
+            <p class="text-neutral-600 mb-4">
+              По заданным параметрам заметок не найдено.
+            </p>
+          </template>
+          <template v-else>
+            <div>
+              <p class="text-neutral-600 mb-4">
+                Вы еще не создавали заметок...
+              </p>
               <AppButton variant="primary" @click="router.push('/notes/new')">
                 Создать первую заметку
               </AppButton>
-            </template>
-          </p>
-
+            </div>
+          </template>
         </div>
 
       </div>

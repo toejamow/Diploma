@@ -19,7 +19,7 @@ services:
   mysql:
     image: mysql:8.0
     volumes:
-      - dbdata:/var/www/mysql
+      - dbdata:/var/lib/mysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -38,11 +38,10 @@ services:
     image: node:24
     working_dir: /var/www/app
     volumes:
-      - ./laravel-app:/var/www/app
       - ./vue-project:/var/www/app
     ports:
       - "5173:5173"
-    command: ["tail", "-f", "/dev/null"]
+    command: sh -c "npm i && npm run dev -- --host"
     depends_on:
       - php
     
