@@ -4,6 +4,11 @@ services:
     volumes:
       - ./laravel-app:/var/www/app
       - /var/www/app/vendor
+    command: > 
+     sh -c "cp -n .env.example .env || true
+     && composer install
+     && php artisan key:generate --force
+     && php-fpm"
     ports:
       - "9000:9000"
   
