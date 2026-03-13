@@ -19,12 +19,30 @@
 - Vue.js
 - Pinia
 ### Database
-- MySQl
+- MySQL
 ### AI
 - OpenRouter API (GPT-3.5 Turbo)
 
 <!-- <img src="https://skillicons.dev/icons?i=laravel">
 <img src="https://skillicons.dev/icons?i=vue"> -->
+
+## 💻 Запуск проекта
+Проект полностью контейнезирован. 
+### 1. Подготовка
+Для запуска проекта необходим [Docker Desktop](https://www.docker.com/products/docker-desktop/).
+### 2. Установка
+Клонируйте репозиторий, перейдите в папку проекта:
+```bash
+git clone https://github.com/toejamow/Diploma.git
+cd ваша-папка
+```
+### 3. Запуск
+Запустите сборку и подъем контейнеров:
+```bash
+docker compose up -d --build
+```
+### 4. Готово
+Приложение будет доступно по [ссылке]( http://localhost:5173). Вы великолепны!
 
 ## Галерея
 
