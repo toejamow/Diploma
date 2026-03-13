@@ -3,6 +3,7 @@ services:
     build: .
     volumes:
       - ./laravel-app:/var/www/app
+      - /var/www/app/vendor
     ports:
       - "9000:9000"
   
