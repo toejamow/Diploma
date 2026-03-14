@@ -53,7 +53,7 @@ const handleSubmit = async () => {
       </div>
       
 <form @submit.prevent="handleSubmit">
-        <div v-if="errors.form" class="p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg text-sm animate-fade-in">
+        <div v-if="errors.form" class="p-3 mb-3 bg-red-50 border border-red-200 text-red-700 rounded-lg text-sm animate-fade-in">
           {{ errors.form }}
         </div>
         
