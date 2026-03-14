@@ -22,7 +22,7 @@ class AuthController extends Controller
                     'email' => $user->email
                 ],
                 'code' => 201,
-                'message' => 'Пользователь создан'
+                'message' => 'Пользователь создан.'
             ]
         ], 201);
     }
@@ -43,7 +43,7 @@ class AuthController extends Controller
 
         return response()->json([
             "code" => 401,
-            "message" => "Login failed"
+            "message" => "Проверьте почту или пароль."
         ], 401);
     }
 
